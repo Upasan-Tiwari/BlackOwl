@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLACK OWL — Quiet Luxury & Sartorial Streetwear</title>
+    <!-- Premium Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0A0A0C;
+            --card-bg: #121215;
+            --card-border: #1F1F24;
+            --text-primary: #F0F0F2;
+            --text-secondary: #8E8E93;
+            --accent: #FFFFFF;
+            --gold-accent: #C5A059;
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header / Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 12, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            z-index: 100;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            color: var(--accent);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav-status {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: var(--gold-accent);
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--gold-accent);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px var(--gold-accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 1.5rem 4rem;
+            background: radial-gradient(circle at center, #16161C 0%, var(--bg-color) 70%);
+        }
+
+        .hero-subtitle {
+            font-size: 0.8rem;
+            letter-spacing: 0.3em;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .hero-description {
+            max-width: 580px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+        }
+
+        .scroll-indicator {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--text-secondary);
+            padding-bottom: 4px;
+        }
+
+        /* Product Showcase Section */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-tagline {
+            font-size: 0.8rem;
+            color: var(--gold-accent);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform 0.4s ease, border-color 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            border-color: #33333D;
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 130%; /* Aspect ratio */
+            background-color: #1A1A1E;
+            overflow: hidden;
+        }
+
+        .image-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.9) contrast(1.05);
+            transition: transform 0.6s ease;
+        }
+
+        .product-card:hover .image-wrapper img {
+            transform: scale(1.04);
+        }
+
+        .edition-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(10, 10, 12, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--card-border);
+            color: var(--gold-accent);
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            padding: 0.35rem 0.75rem;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .product-details {
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .product-specs {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        .product-footer {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            text-align: center;
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 0.85rem 1.25rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: var(--accent);
+            color: var(--bg-color);
+        }
+
+        /* Brand Philosophy Section */
+        .philosophy {
+            background: #0E0E11;
+            border-top: 1px solid var(--card-border);
+            border-bottom: 1px solid var(--card-border);
+            padding: 6rem 1.5rem;
+            text-align: center;
+        }
+
+        .philosophy-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .philosophy-quote {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            letter-spacing: 0.1em;
+            line-height: 1.8;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .philosophy-subtext {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 1.5rem;
+            text-align: center;
+            border-top: 1px solid var(--card-border);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.1em;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .legal-entity {
+            color: #55555E;
+            font-size: 0.7rem;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 1.25rem;
+            }
+            .hero {
+                padding-top: 7rem;
+            }
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <a href="#" class="brand-logo">BLACK OWL</a>
+        <div class="nav-status">
+            <span class="status-dot"></span>
+            <span>Vault Open — Edition 01</span>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <p class="hero-subtitle">Sartorial Silence & Minimalist Craft</p>
+        <h1 class="hero-title">NO LOGOS. NO NOISE.</h1>
+        <p class="hero-description">
+            Strictly limited batch streetwear engineered with custom utility fits, heavyweight fabrics, and serialized craftsmanship.
+        </p>
+        <span class="scroll-indicator">Explore Collection</span>
+    </section>
+
+    <!-- Product Showcase -->
+    <main class="container">
+        <div class="section-header">
+            <h2 class="section-title">Edition 01 Showcase</h2>
+            <p class="section-tagline">100 Serialized Pieces Produced Worldwide</p>
+        </div>
+
+        <div class="product-grid">
+            
+            <!-- Product 1 -->
+            <article class="product-card">
+                <div class="image-wrapper">
+                    <span class="edition-badge">Piece 001 / 100</span>
+                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=1000&auto=format&fit=crop" alt="Heavyweight Vault Hoodie">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">The Vault Heavyweight Hoodie</h3>
+                    <p class="product-specs">
+                        450 GSM Organic French Terry. Matte-black oxidized zipper hardware, double-layered ribbed structured collar, and drop-shoulder utility cut.
+                    </p>
+                    <div class="product-footer">
+                        <a href="https://ig.me/m/YOUR_INSTAGRAM_USERNAME" target="_blank" class="cta-button">Inquire via Concierge</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 2 -->
+            <article class="product-card">
+                <div class="image-wrapper">
+                    <span class="edition-badge">Piece 002 / 100</span>
+                    <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=1000&auto=format&fit=crop" alt="Tactile Boxy Overshirt">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Tactile Boxy Utility Overshirt</h3>
+                    <p class="product-specs">
+                        Structured cotton-twill weave. Features internal concealed chest storage, matte-black snap buttons, and a tailored boxy South Asian fit.
+                    </p>
+                    <div class="product-footer">
+                        <a href="https://ig.me/m/YOUR_INSTAGRAM_USERNAME" target="_blank" class="cta-button">Inquire via Concierge</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 3 -->
+            <article class="product-card">
+                <div class="image-wrapper">
+                    <span class="edition-badge">Piece 003 / 100</span>
+                    <img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?q=80&w=1000&auto=format&fit=crop" alt="Sartorial Pleated Trousers">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Sartorial Pleated Trousers</h3>
+                    <p class="product-specs">
+                        Deep slate wool-blend drape. Twin front pleats, hidden elastic waist adjustments, and clean unhemmed leg finish for effortless tailoring.
+                    </p>
+                    <div class="product-footer">
+                        <a href="https://ig.me/m/YOUR_INSTAGRAM_USERNAME" target="_blank" class="cta-button">Inquire via Concierge</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 4 -->
+            <article class="product-card">
+                <div class="image-wrapper">
+                    <span class="edition-badge">Piece 004 / 100</span>
+                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=1000&auto=format&fit=crop" alt="Heavyweight Drop Tee">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Monochrome Heavyweight Tee</h3>
+                    <p class="product-specs">
+                        280 GSM Compact Cotton. Features an anti-bacon collar rib, tonal silicone owl back patch, and zero external printed logos.
+                    </p>
+                    <div class="product-footer">
+                        <a href="https://ig.me/m/YOUR_INSTAGRAM_USERNAME" target="_blank" class="cta-button">Inquire via Concierge</a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- Philosophy -->
+    <section class="philosophy">
+        <div class="philosophy-content">
+            <p class="philosophy-quote">"True status does not shout. It sits quietly in the weight of the fabric and the precision of the cut."</p>
+            <p class="philosophy-subtext">Designed & Hand-Finished in Nepal</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 BLACK OWL. All Rights Reserved.</p>
+        <p class="legal-entity">A Division of Glam Up Business Pvt. Ltd., Kathmandu, Nepal.</p>
+    </footer>
+
+</body>
+</html>
